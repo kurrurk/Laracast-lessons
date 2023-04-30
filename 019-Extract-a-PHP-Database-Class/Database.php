@@ -1,9 +1,4 @@
 <?php
-
-require "functions.php";
-
-// Connect to the database, and execute a query.
-
 class Database {
 
     private $connection;
@@ -23,15 +18,3 @@ class Database {
 
     }
 }
-
-$db = new Database();
-
-$posts = $db->query("select * from posts")->fetchAll(PDO::FETCH_ASSOC);
-
-$post2 = $db->query("select * from posts where id = 2")->fetch(PDO::FETCH_ASSOC);
-
-foreach ($posts as $post) {
-    echo "<li>" . $post['title'] . "</li>";
-}
-
-dd($post2['title']);
