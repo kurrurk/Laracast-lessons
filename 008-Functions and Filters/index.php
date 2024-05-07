@@ -6,6 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laracast 1 - 008-Functions and Filters</title>
 </head>
+
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100vh;
+        margin: 0;
+        font-family: sans-serif;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    hr {
+        width: 100%;
+    }
+    em {
+        font-weight: 200;
+    }
+</style>
+
 <body>
 <?php
 
@@ -14,25 +35,25 @@ $books = [
     [
         'name' => "Project Hail Mary",
         'author' => "Andy Weir",
-        'purchaseUrl' => "https://google.com",
+        'purchaseUrl' => "https://en.wikipedia.org/wiki/Project_Hail_Mary",
         'releaseYear' => 2021
     ],
     [
         'name' => "Artemis",
         'author' => "Andy Weir",
-        'purchaseUrl' => "https://google.com",
+        'purchaseUrl' => "https://en.wikipedia.org/wiki/Artemis_(novel)",
         'releaseYear' => 2017
     ],
     [
         'name' => "Lord of Light",
         'author' => "Roger Zelazny",
-        'purchaseUrl' => "https://google.com",
+        'purchaseUrl' => "https://en.wikipedia.org/wiki/Lord_of_Light",
         'releaseYear' => 1967
     ],
     [
         'name' => "Nine Princes in Amber",
         'author' => "Roger Zelazny",
-        'purchaseUrl' => "https://google.com",
+        'purchaseUrl' => "https://de.wikipedia.org/wiki/Corwin_von_Amber",
         'releaseYear' => 1970
     ]
 
@@ -42,22 +63,28 @@ $films = [
 
     [
         'name' => "Dungeons & Dragons: Honor Among Thieves",
-        'releaseYear' => 2023
+        'releaseYear' => 2023,
+        'purchaseUrl' => "https://de.wikipedia.org/wiki/Dungeons_%26_Dragons:_Ehre_unter_Dieben",
     ],
     [
         'name' => "Labyrinth",
-        'releaseYear' => 1986
+        'releaseYear' => 1986,
+        'purchaseUrl' => "https://de.wikipedia.org/wiki/Die_Reise_ins_Labyrinth",
     ],
     [
         'name' => "Teenage Mutant Ninja Turtles",
-        'releaseYear' => 1990
+        'releaseYear' => 1990,
+        'purchaseUrl' => "https://de.wikipedia.org/wiki/Turtles_(Film)",
     ],
     [
         'name' => "The Lord of the Rings: The Fellowship of the Ring",
-        'releaseYear' => 2001
+        'releaseYear' => 2001,
+        'purchaseUrl' => "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Fellowship_of_the_Ring",
     ]
 
 ];
+
+$filterAuthor = "Roger Zelazny";
 
 function filterByAuthor ($books, $author) {
     $filteredBooks = [];
@@ -68,6 +95,8 @@ function filterByAuthor ($books, $author) {
     endforeach;
     return $filteredBooks;
 }
+
+$filterReleaseYear = 2000;
 
 function filterByReleaseYear ($films, int $releaseYear = 2000) {
     $filteredFilms = [];
@@ -81,12 +110,12 @@ function filterByReleaseYear ($films, int $releaseYear = 2000) {
 
 ?>
 
-<h3>Books</h3>
+<h3>Vorgeschlagene Bücher von <em><?= $filterAuthor; ?></em>:</h3>
 
 <ul>
-    <?php foreach (filterByAuthor($books, "Roger Zelazny") as $book) : ?>
+    <?php foreach (filterByAuthor($books, $filterAuthor) as $book) : ?>
         <li>
-            <a href="#">
+            <a href="<?= $book['purchaseUrl']; ?>" target="_blank">
                 <?= $book['name']." (". $book['releaseYear'] .")"?>
             </a>
         </li>
@@ -96,12 +125,12 @@ function filterByReleaseYear ($films, int $releaseYear = 2000) {
 <hr>
 <br>
 
-<h3>Films</h3>
+<h3>Vorgeschlagene Bücher in Jahr <em><?= $filterReleaseYear; ?></em>:</h3>
 
 <ul>
-    <?php foreach (filterByReleaseYear($films) as $film) : ?>
+    <?php foreach (filterByReleaseYear($films, $filterReleaseYear) as $film) : ?>
         <li>
-            <a href="#">
+            <a href="<?= $film['purchaseUrl']; ?>" target="_blank">
                 <?= $film['name']." (". $film['releaseYear'] .")"?>
             </a>
         </li>
