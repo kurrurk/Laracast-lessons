@@ -57,50 +57,26 @@ $books = [
 
 ];
 
-define("FILTER_AUTOR", "Roger Zelazny");
-define("YEAR_BEFORE", 2020);
-define("YEAR_AFTER", 1950);
+$filterAuthor = "Roger Zelazny";
 
-function filter ($items, $fn) {
+function filter ($items, $key, $value) {
     $filteredItems = [];
     foreach ($items as $item) :
-        if ($fn($item)) :
+        if ($item[$key] === $value) :
             $filteredItems[] = $item;
         endif;
     endforeach;
     return $filteredItems;
 }
 
-// array_filter ist eine Standard-PHP-Funktion, die dasselbe macht, als die obige funktion "filter"
-
-$filteredBooks = array_filter($books, function ($item) {
-    return $item['author'] === FILTER_AUTOR;
-});
-
-$filteredBooks2 = array_filter($books, function ($item) {
-    return $item['releaseYear'] >= YEAR_AFTER && $item['releaseYear'] <= YEAR_BEFORE;
-});
+$filteredBooks = filter($books, 'author', $filterAuthor);
 
 ?>
 
-<h3>Vorgeschlagene Bücher von <em><?= FILTER_AUTOR; ?></em>:</h3>
+<h3>Vorgeschlagene Bücher von <em><?= $filterAuthor; ?></em>:</h3>
 
 <ul>
     <?php foreach ($filteredBooks as $book) : ?>
-        <li>
-            <a href="<?= $book['purchaseUrl']; ?>" target="_blank">
-                <?= $book['name']." (". $book['releaseYear'] .")"?>
-            </a>
-        </li>
-    <?php endforeach; ?>
-</ul>
-
-<hr>
-
-<h3>Empfohlene Bücher zwischen <em><?= YEAR_AFTER; ?></em> und <em><?= YEAR_BEFORE; ?></em>:</h3>
-
-<ul>
-    <?php foreach ($filteredBooks2 as $book) : ?>
         <li>
             <a href="<?= $book['purchaseUrl']; ?>" target="_blank">
                 <?= $book['name']." (". $book['releaseYear'] .")"?>
