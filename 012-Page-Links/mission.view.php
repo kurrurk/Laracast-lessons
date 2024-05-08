@@ -20,10 +20,10 @@
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="/" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Startseite</a>
+                            <a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Startseite</a>
                             <a href="/about.php" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Über uns</a>
                             <a href="/contact.php" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Kontakt</a>
-                            <a href="/mission.php" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Unsere Mission</a>
+                            <a href="/mission.php" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Unsere Mission</a>
                         </div>
                     </div>
                 </div>
@@ -88,10 +88,10 @@
         <div class="md:hidden" id="mobile-menu">
             <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="/" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Startseite</a>
+                <a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Startseite</a>
                 <a href="/about.php" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Über uns</a>
                 <a href="/contact.php" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Kontakt</a>
-                <a href="/mission.php" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Unsere Mission</a>
+                <a href="/mission.php" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Unsere Mission</a>
             </div>
             <div class="border-t border-gray-700 pb-3 pt-4">
                 <div class="flex items-center px-5">
@@ -121,12 +121,12 @@
 
     <header class="bg-white shadow">
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Startseite</h1>
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Unsere Mission</h1>
         </div>
     </header>
     <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-            <p> Hallo. Herzlich willkommen zu meine Startseite.</p>
+            <p> Hallo. Das ist die "Unsere Mission" - Seite. </p>
         </div>
     </main>
 </div>
