@@ -5,6 +5,6 @@ function urlIs ($value) : bool
     return $_SERVER['REQUEST_URI'] === $value;
 }
 
-$heading = "Startseite";
+$heading = "Unsere Mission";
 
-require "views/index.view.php";
+require "views/mission.view.php";
