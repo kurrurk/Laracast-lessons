@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Variables</title>
+    <title>Laracast - 005-Conditionals and Booleans</title>
 </head>
 <style>
     body {
