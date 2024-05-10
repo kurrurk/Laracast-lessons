@@ -1,4 +1,7 @@
 <?php
 
 require "functions.php";
-require "router.php";
+
+$heading = "Startseite";
+
+require "views/index.view.php";
