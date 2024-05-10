@@ -1,5 +1,5 @@
 <?php
 
-$heading = "Home";
+$heading = "Startseite";
 
 require "views/index.view.php";
