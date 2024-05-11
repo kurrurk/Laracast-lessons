@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laracast - 006-Arrays</title>
+    <title>Laracast - 017 PDO First Steps</title>
 </head>
 <style>
     body {
@@ -31,8 +31,8 @@
 
 require "functions.php";
 
-define("QUERY1", "select * from posts");
-define("QUERY2", "select * from posts where id = 1"); // für Hausaufgabe
+const QUERY1 = "select * from posts";
+const QUERY2 = "select * from posts where id = 1"; // für Hausaufgabe
 
 // Connect to the database, and execute a query.
 

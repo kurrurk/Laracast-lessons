@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laracast - 006-Arrays</title>
+    <title>Laracast - 018 Extract a PHP Database Class</title>
 </head>
 <style>
     body {
@@ -18,48 +18,45 @@
     }
     ul {
         line-height: 1.5em;
+        padding: 0;
     }
 </style>
 
 <body>
 
-<h1>PDO First Steps:</h1>
+<h1>Extract a PHP Database Class:</h1>
 <?php
 
 require "functions.php";
 
 // Connect to the database, and execute a query.
 
-class Database {
+require "Database.php";
 
-    private $connection;
-    public function __construct()
-    {
-        $dsn="mysql:host=127.0.0.1;port=3306;dbname=myapp;user=kurrurk;password=L@rAca$7_sql;charset=utf8mb4";
-
-        $this->connection = new PDO($dsn);
-    }
-
-    public function query($query) {
-
-        $statement = $this->connection->prepare($query);
-        $statement->execute();
-
-        return $statement;
-
-    }
-}
+const QUERY1 = "select * from posts";
+const QUERY2 = "select * from posts where id = 1"; // für Hausaufgabe
 
 $db = new Database();
 
-$posts = $db->query("select * from posts")->fetchAll(PDO::FETCH_ASSOC); // FETCH_ASSOC -> Gib mir das Ergebnis als assoziatives Array
+$posts = $db->query(QUERY1)->fetchAll(PDO::FETCH_ASSOC); // FETCH_ASSOC -> Gib mir das Ergebnis als assoziatives Array
 
-$post2 = $db->query("select * from posts where id = 2")->fetch(PDO::FETCH_ASSOC);
+echo '<h2>'.QUERY1.' :</h2>';
 
 echo '<ul>';
-    foreach ($posts as $post) {
-        echo "<li>" . $post['title'] . "</li>";
-    }
+foreach ($posts as $post) {
+    echo "<li>" . $post['title'] . "</li>";
+}
+echo '</ul>';
+
+
+// Hausaufgabe
+
+$post2 = $db->query(QUERY2)->fetch(PDO::FETCH_ASSOC);
+
+echo '<h2>'.QUERY2.' :</h2>';
+
+echo '<ul>';
+echo "<li>" . $post2['title'] . "</li>";
 echo '</ul>';
 
 ?>
@@ -68,4 +65,5 @@ echo '</ul>';
 </html>
 
 <?php
+
 dd($post2['title']);
