@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laracast - 018 Extract a PHP Database Class</title>
+    <title>Laracast - 019-Environments and Configuration Flexibility</title>
 </head>
 <style>
     body {
