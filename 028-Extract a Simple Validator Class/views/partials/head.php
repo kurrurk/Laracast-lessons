@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- script src="/tailwind/cdn-tailwind.js"></script -->
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-    <title>Laracast - 027-Intro to Form Validation</title>
+    <title>Laracast - 028-Extract a Simple Validator Class</title>
 </head>
 <body class="h-full">
 

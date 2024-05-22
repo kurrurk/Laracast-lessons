@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/tailwind/cdn-tailwind.js"></script>
-    <title>Laracast - 023-Introduction to Authorization</title>
+    <title>Laracast - 024-Programming is Rewriting</title>
 </head>
 <body class="h-full">
 
