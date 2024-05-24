@@ -1,6 +1,6 @@
 <?php
 
-require 'Validato.php';
+require 'Validator.php';
 
 $config = require 'config.php';
 $db = new Database($config['database'],'kurrurk','L@rAca$7_sql');
