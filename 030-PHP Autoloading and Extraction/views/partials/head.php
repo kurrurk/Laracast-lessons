@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- script src="/tailwind/cdn-tailwind.js"></script -->
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-    <title>Laracast - 029-Resourceful Naming Conventions</title>
+    <title>Laracast - 030-PHP Autoloading and Extraction</title>
 </head>
 <body class="h-full">
 
