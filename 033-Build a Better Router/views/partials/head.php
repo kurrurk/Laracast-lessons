@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- script src="/tailwind/cdn-tailwind.js"></script -->
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-    <title>032-Handle Multiple Request Methods From a Controller Action?</title>
+    <title>033-Build a Better Router</title>
 </head>
 <body class="h-full">
 
