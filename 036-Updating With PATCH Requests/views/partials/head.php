@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- script src="/tailwind/cdn-tailwind.js"></script -->
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-    <title>035-Make Your First Service Container</title>
+    <title>036-Updating With PATCH Requests</title>
 </head>
 <body class="h-full">
 
