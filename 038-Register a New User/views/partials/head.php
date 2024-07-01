@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- script src="/tailwind/cdn-tailwind.js"></script -->
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-    <title>037-PHP Sessions 101</title>
+    <title>038-Register a New User</title>
 </head>
 <body class="h-full">
 
