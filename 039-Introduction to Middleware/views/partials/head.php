@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- script src="/tailwind/cdn-tailwind.js"></script -->
     <link href="http://localhost:8000/src/output.css" rel="stylesheet">
-    <title>038-Register a New User</title>
+    <title>039-Introduction to Middleware</title>
 </head>
 <body class="h-full">
 
