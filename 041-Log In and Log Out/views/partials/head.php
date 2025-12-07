@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- script src="/tailwind/cdn-tailwind.js"></script -->
     <link href="http://localhost:8000/src/output.css" rel="stylesheet">
-    <title>040-Manage Passwords Like This For The Remainder of Your Career</title>
+    <title>041-Log In and Log Out</title>
 </head>
 <body class="h-full">
 
