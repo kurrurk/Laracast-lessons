@@ -1,0 +1,16 @@
+{
+    "name": "vasily/047-composer",
+    "authors": [
+        {
+            "name": "VasilyShat",
+            "email": "vasily.shatalkin.job@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    }
+}
