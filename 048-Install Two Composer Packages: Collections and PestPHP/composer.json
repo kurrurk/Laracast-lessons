@@ -1,0 +1,27 @@
+{
+    "name": "vasily/047-composer",
+    "authors": [
+        {
+            "name": "VasilyShat",
+            "email": "vasily.shatalkin.job@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/collections": "^12.42"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/",
+            "Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^4.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
