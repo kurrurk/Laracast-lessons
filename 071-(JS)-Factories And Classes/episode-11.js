@@ -1,60 +1,79 @@
-// Object Basics
+// Object Creational Patterns
 
-let person = {};
 
-person.firstName = 'John';
+class Game {
 
-person['lastName'] = 'Doe';
+    #minRange; // private
+    #maxRange; // private    
+    #maxAttempts; // private
 
-person.getFullName = function() {
+    #guess;
+    #message;
+    #result;
 
-    return `${this.firstName} ${this.lastName}`;
+    constructor ({minRange = 1, maxRange = 10, maxAttempts = 4} = {} ) {
 
-};
+        this.#minRange = minRange;
+        this.#maxRange = maxRange;
+        this.#maxAttempts = maxAttempts;
 
-console.log('person:');
+    }
 
-console.log(person);
+    play( ) {
 
-console.log(`person's full name: ${person.getFullName()}`);
+        const secretNumber = Math.floor(Math.random() * (this.#maxRange - this.#minRange + 1)) + this.#minRange;
 
-let person2 = {
+        const history = [];
 
-    firstName: 'Mary', // do not use 'firstName'
-    lastName: 'Sue',
-    getFullName: function() {
+        this.#guess = NaN;
+        this.#message = `Please enter a number between ${this.#minRange} and ${this.#maxRange}`;
+        this.#result = [false, NaN];
 
-        return `${this.firstName} ${this.lastName}`;
+        while ( history.length < this.#maxAttempts ) {
+            let input = prompt(this.#message);
+            this.#guess = Number(input);
 
-    },
+            if (isNaN(this.#guess) || this.#guess < this.minRange || this.#guess > this.#maxRange) {
+                console.log(`Please enter a valid number from ${this.#minRange} and ${this.#maxRange}`);
+                this.#message = `Please enter a number between ${this.#minRange} and ${this.#maxRange}`;
+                continue;
+            }
 
-};
+            if ( history.indexOf(this.#guess) > -1 ) {
+                continue;
+            }
 
-console.log('person2:');
+            history.push(this.#guess);
 
-console.log(person);
+            if (this.#guess === secretNumber) {
+                console.log('Congrats! You guessed the number.')
+                this.#result = [true, history.length];
+                break;
+            } else if (guess < secretNumber) {
+                this.#message = `${this.#guess} is too low.`;
+            } else if (guess > secretNumber) {
+                this.#message = `${this.#guess} is too high.`;
+            }
+        }
 
-console.log(`second person's full name: ${person.getFullName()}`);
+        if ( this.#result[0] ) {
+            alert(`Game Over! The number is ${secretNumber}, and you guessed it, in ${result[1]} attemts.`);
+        } else {
+            alert(`Game Over! The number is ${secretNumber}, and you didn't guessed it.`)
+        }
 
-const game = (function () {
+        console.log(`Guessed numbers are: ${history.join(', ')}`)
+    }
 
-    // let obj = {
-    //     minRange: 10, 
-    //     maxRange: 40, 
-    //     maxAttempts: 20
-    // };
+}
 
-    // play(obj)
-
+//factory function
+const createGame = function ( {minRange = 1, maxRange = 10, maxAttempts = 4} = {} ) {
     return {
-
-        play( {minRange = 1, maxRange = 10, maxAttempts = 4} = {} ) {
-
-            // const {minRange = 1, maxRange = 10, maxAttempts = 4} = options;
-
-            // const minRange = options.minRange ?? 1;
-            // const maxRange = options.maxRange ?? 10;
-            // const maxAttempts = options.maxAttempts ?? 4;
+        // minRange,
+        // maxRange,
+        // maxAttempts,
+        play( ) {
 
             const secretNumber = Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
 
@@ -102,6 +121,19 @@ const game = (function () {
 
     } 
 
-})();
+}
 
-game.play();
+// game.play();
+
+
+let easyGame = createGame({maxAttempts: 10});
+let narmalGame = createGame();
+let hardGame = createGame({maxRange: 100, maxAttempts: 10});
+let reallyHardGame = createGame({maxRange: 100, maxAttempts: 5});
+
+let easyGame2 = new Game({maxAttempts: 10});
+let narmalGame2 = new Game();
+let hardGame2 = new Game({maxRange: 100, maxAttempts: 10});
+let reallyHardGame2 = new Game({maxRange: 100, maxAttempts: 5});
+
+alert(hardGame2.play === easyGame2.play);
