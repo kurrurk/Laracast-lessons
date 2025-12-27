@@ -113,15 +113,15 @@ class Game {
                 console.log('Congrats! You guessed the number.')
                 this.#result = [true, history.length];
                 break;
-            } else if (guess < secretNumber) {
+            } else if (this.#guess < secretNumber) {
                 this.#message = `${this.#guess} is too low.`;
-            } else if (guess > secretNumber) {
+            } else if (this.#guess > secretNumber) {
                 this.#message = `${this.#guess} is too high.`;
             }
         }
 
         if ( this.#result[0] ) {
-            alert(`Game Over! The number is ${secretNumber}, and you guessed it, in ${result[1]} attemts.`);
+            alert(`Game Over! The number is ${secretNumber}, and you guessed it, in ${this.#result[1]} attemts.`);
         } else {
             alert(`Game Over! The number is ${secretNumber}, and you didn't guessed it.`)
         }
