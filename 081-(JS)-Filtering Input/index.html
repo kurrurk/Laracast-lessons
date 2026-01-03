@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>081-(JS)-Filtering Input</title>
+</head>
+<body class="bg-gray-700 dark min-h-screen text-white">
+    <div class="sticky top-0 z-50">
+        <nav class="section md:!px-8 w-full py-3 bg-gray-950 border-b border-b-gray-700 mb-8 shadow-sm">
+            <div class="relative h-full items-center">
+                <div class="relative h-full flex justify-between">
+                    <span class="text-xs font-bold uppercase text-gray-400">Episode 21 : Filtering Input</span>
+                    <span class="text-xs font-bold uppercase text-gray-400">Laracast</span>                    
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="w-full p-6 bg-gray-800">
+        <h1 class="text-2xl font-bold text-center mb-4" >Game Settings</h1>
+        <div class="w-full flex gap-2 justify-center">
+            <form id="settings-form">
+                <div class="mb-3"> 
+                    <input class="mr-1" type="radio" name="game-type-selector" id="game-type-mode" value="options-mode" checked="checked">
+                        <label class="mr-2" for="game-type-mode">Mode</label>
+                    <input class="mr-1" type="radio" name="game-type-selector" id="game-type-selector" value="options-custom">
+                        <label class="mr-6" for="game-type-custom">Custom</label>
+
+                    <input class="mr-1" type="checkbox" name="allow-duplicates-checkbox" id="allow-duplicates-checkbox">
+                        <label for="allow-duplicates-checkbox">Allow duplicate guesses</label>    
+                </div>
+                <div id="options-custom" class="hidden">
+                    <input id="input-title" type="text" placeholder="Game Title" class="border p-2 w-40 bg-gray-900">
+                    <input id="input-min-range" type="text" placeholder="Min Range" class="border p-2 w-24 bg-gray-900">
+                    <input id="input-max-range" type="text" placeholder="Max Range" class="border p-2 w-24 bg-gray-900">
+                    <input id="input-max-attempts" type="text" placeholder="Max Attempts" class="border p-2 w-24 bg-gray-900">
+                </div>
+
+                <div id="options-mode" class="inline">
+                    <select name="game-level" id="game-level" class="border inline-flex grow p-2 w-47 bg-gray-900">
+                        <option data-min-range="1" data-max-range="10" data-max-attempts="10" value="easy">I'm Too Young to Die</option>
+                        <option data-min-range="1" data-max-range="20" data-max-attempts="7" value="medium">Hurt Me Plenty</option>
+                        <option data-min-range="1" data-max-range="50" data-max-attempts="5" value="hard">Ultra-Violence</option>
+                    </select>
+                </div>                
+
+                <button id="play-game" name="play-game" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 cursor-pointer">
+                    Play Game
+                </button>
+                <button id="clear-game" name="clear-game" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 cursor-pointer">
+                    Clear
+                </button>
+            </form>
+        </div>
+    </div>    
+    <script src="episode-21.js"></script>
+</body>
+</html>
