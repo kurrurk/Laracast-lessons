@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+#game-level {
+    min-height: 39px;
+}
