@@ -80,25 +80,6 @@ export default class Game {
     });
   }
 
-  // static hasSavedGame() {
-  //   return getGameState();
-  // }
-
-  static async loadSavedGame() {
-    const state = await getGameState();
-
-    if (!state) {
-      return null;
-    }
-
-    let game = new Game(state);
-
-    game.#secretNumber = state.secretNumber;
-    game.history = state.history;
-
-    return game;
-  }
-
   static initRangeValues({ value, lowerBounds, upperBounds = 0 } = {}) {
     let num = Number(value);
 
@@ -116,14 +97,32 @@ export default class Game {
 
     if (upperBounds && num > upperBounds) {
       throw {
-        message: `Value cannot be less than ${upperBounds}`,
+        message: `Value cannot be greater than ${upperBounds}`,
       };
     }
 
     return num;
   }
 
+  static async loadSavedGame() {
+    const state = await getGameState();
+
+    if (!state) {
+      return null;
+    }
+
+    let game = new Game(state);
+
+    game.#secretNumber = state.secretNumber;
+    game.history = state.history;
+
+    return game;
+  }
+
   async checkGuess(guess) {
+    if (this.#maxAttempts === this.history.length) {
+      return; // todo: throw error?
+    }
     if (!this.#allowDuplicateGuesses && this.history.indexOf(guess) > -1) {
       return;
     }
@@ -144,7 +143,7 @@ export default class Game {
         detail: {
           guess,
           result,
-          remainningAttempts: this.#maxAttempts - this.history.length,
+          remainingAttempts: this.#maxAttempts - this.history.length,
         },
       }),
     );
@@ -167,10 +166,8 @@ export default class Game {
       maxRange: this.#maxRange,
       maxAttempts: this.#maxAttempts,
       allowDuplicateGuesses: this.#allowDuplicateGuesses,
-      history: this.history,
       secretNumber: this.#secretNumber,
+      history: this.history,
     });
-
-    return false;
   }
 }

@@ -45,35 +45,19 @@ export const ui = {
     set disabled(value) {
       const elements = form.elements;
 
-      for (let li = 0; li < elements.length; li++) {
-        elements[li].disabled = value;
+      for (let ii = 0; ii < elements.length; ii++) {
+        elements[ii].disabled = value;
       }
-
-      // [...form.elements].forEach((element) => {
-      //   element.disabled = value;
-      // });
-
-      // Array.from(form.elements).forEach((element) => {
-      //   element.disabled = value;
-      // });
-
-      // Array.prototype.forEach.call(form.elements, (element) => {
-      //   element.disabled = value;
-      // });
     },
   },
 
   changeGameType(id) {
     if (optionsCustomElement.id === id) {
-      console.log(id);
-
       optionsCustomElement.className = "inline";
       optionsModeElement.className = "hidden";
     } else {
-      console.log(id);
-
-      optionsModeElement.className = "inline";
       optionsCustomElement.className = "hidden";
+      optionsModeElement.className = "inline";
     }
   },
 
@@ -96,16 +80,12 @@ export const ui = {
     historyElement.innerHTML = "";
   },
 
-  updateHistory(result) {
-    historyElement.innerHTML += `<li>${result}</li>`;
-  },
-
-  getGuessElement() {
-    return inputGuessElement;
-  },
-
   showFeedback(message) {
     feedbackElement.innerHTML = message;
+  },
+
+  updateHistory(result) {
+    historyElement.innerHTML += `<li>${result}</li>`;
   },
 };
 
@@ -117,7 +97,7 @@ export async function init() {
       game = savedGame;
       ui.gameArea.show();
       ui.gameArea.disabled = false;
-      ui.settings.disabled = false;
+      ui.settings.disabled = true;
 
       game.history.forEach((value) => ui.updateHistory(value));
     }
@@ -125,6 +105,8 @@ export async function init() {
 
   document.addEventListener("click", (event) => {
     if (event.target.id === "submit-guess") {
+      // get guess
+
       event.target.dispatchEvent(
         new CustomEvent("ui:submit-guess", {
           bubbles: true,
@@ -135,13 +117,15 @@ export async function init() {
         }),
       );
     } else if (event.target.id === "end-game") {
-      document.dispatchEvent(new Event("ui:end-game"), {
-        bubbles: true,
-      });
+      event.target.dispatchEvent(
+        new Event("ui:end-game", {
+          bubbles: true,
+        }),
+      );
     }
   });
 
-  document.addEventListener("click", (event) => {
+  document.addEventListener("input", (event) => {
     if (event.target.name !== "game-type-selector") {
       return;
     }
@@ -159,9 +143,9 @@ export async function init() {
     }
 
     const allowedKeys = [
-      "Backspace",
       "ArrowLeft",
       "ArrowRight",
+      "Backspace",
       "Delete",
       "Tab",
     ];
@@ -198,7 +182,7 @@ export async function init() {
 
         if (ui.selectedGameType === "options-custom") {
           if (!title || !minRange || !maxRange || !maxAttempts) {
-            alert("Please anter all settings");
+            alert("Please enter all settings");
             return;
           }
         } else {
@@ -214,7 +198,6 @@ export async function init() {
         ui.gameArea.show();
 
         ui.reset();
-
         game = new Game({
           minRange,
           maxRange,
@@ -224,7 +207,6 @@ export async function init() {
         ui.settings.disabled = true;
         ui.gameArea.disabled = false;
 
-        ui.settings.disabled = true;
         // easyGame.play();
       } else if (submitterName === "clear-game") {
         event.preventDefault();
