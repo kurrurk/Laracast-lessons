@@ -1,0 +1,11 @@
+<x-layout>
+    <div class="pt-3 mt-3 text-gray-400">
+        <h2 class="mb-3 pb-1 border-b-1 border-gray-400 text-white font-bold">Your Idea</h2>
+        <div class="mt-6">{{ $idea->description }}</div>
+    </div>
+    <a href="/ideas/{{ $idea->id }}/edit" class="relative inline-flex items-center justify-center p-0.5 mt-6 overflow-hidden text-sm font-medium text-heading rounded-base group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-3 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
+                <span class="relative px-4 py-2.5 transition-all ease-in duration-75 bg-gray-700 rounded-base group-hover:bg-transparent group-hover:dark:bg-transparent leading-5 cursor-pointer">
+                    Edit
+                </span>
+            </a>
+</x-layout>
