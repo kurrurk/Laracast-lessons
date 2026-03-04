@@ -1,8 +1,18 @@
 <x-layout>
-    <div class="text-muted-foreground">
+    <div>
         <header class="py-8 md:py-12">
             <h1 class="text-3xl font-bold">Ideas</h1>
             <p class="text-muted-foreground text-sm mt-2">Capture your thoughts. Make a plan.</p>
+
+            <x-card
+                x-data
+                @click="$dispatch('open-modal', 'create-idea')"
+                is="button"
+                type="button"
+                class="mt-1 cursor-pointer h-32 w-full text-left"
+            >
+                <p>What's the idea?</p>
+            </x-card>
         </header>
 
         <div>
@@ -22,7 +32,7 @@
         <div class="mt-10 text-muted-foreground">
             <div class="grid md:grid-cols-2 gap-6">
                 @forelse ($ideas as $idea)
-                    <x-card href="{{ route('idea.show', $idea) /*$idea->path()*/ }}">
+                    <x-card class="flex flex-col" href="{{ route('idea.show', $idea) /*$idea->path()*/ }}">
                         <h3 class="text-foreground text-lg">{{ $idea->title }}</h3>
                         <diw class="mt-1">
                             <x-idea.status-label status="{{ $idea->status }}">
@@ -41,5 +51,10 @@
                 @endforelse
             </div>
         </div>
+
+        {{-- modal --}}
+        <x-modal name="create-idea" title="New idea">
+            <p>Slot content here.</p>
+        </x-modal>
     </div>
 </x-layout>

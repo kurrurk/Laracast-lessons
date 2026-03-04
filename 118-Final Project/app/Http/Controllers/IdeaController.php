@@ -28,7 +28,7 @@ class IdeaController extends Controller
 
         $ideas = $user
             ->ideas()
-            ->when($status, fn ($query, $status) => $query->where('status', $status))
+            ->when($status, fn($query, $status) => $query->where('status', $status))
             ->get();
 
         return view('idea.index', [
@@ -56,11 +56,12 @@ class IdeaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Idea $idea): void
+    public function show(Idea $idea)
     {
-        //
+        return view('idea.show', [
+            'idea' => $idea,
+        ]);
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -80,8 +81,11 @@ class IdeaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Idea $idea): void
+    public function destroy(Idea $idea)
     {
-        //
+        //authorize that this is allowed.
+        $idea->delete();
+
+        return to_route('idea.index');
     }
 }
