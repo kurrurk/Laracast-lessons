@@ -22,7 +22,7 @@ class IdeaController extends Controller
 
         $ideas = $user
             ->ideas()
-            ->when(in_array($request->status, IdeaStatus::values()), fn($query) => $query->where('status', $request->status))
+            ->when(in_array($request->status, IdeaStatus::values()), fn ($query) => $query->where('status', $request->status))
             ->latest()
             ->get();
 
@@ -61,6 +61,7 @@ class IdeaController extends Controller
             'idea' => $idea,
         ]);
     }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -82,7 +83,7 @@ class IdeaController extends Controller
      */
     public function destroy(Idea $idea)
     {
-        //authorize that this is allowed.
+        // authorize that this is allowed.
         $idea->delete();
 
         return to_route('idea.index');
