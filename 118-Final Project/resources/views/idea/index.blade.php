@@ -55,7 +55,15 @@
 
         {{-- modal --}}
         <x-modal name="create-idea" title="New idea">
-            <form x-data="{status: 'pending'}" method="POST" action="{{ route('idea.store') }}">
+            <form
+                x-data="{
+                    status: 'pending',
+                    newLink: '',
+                    links: []
+                }"
+                method="POST"
+                action="{{ route('idea.store') }}"
+            >
                 @csrf
                 <div class="space-y-6">
                     <x-form.field
@@ -92,6 +100,52 @@
                         type="textarea"
                         placeholder="Descridbe your idea..."
                     />
+
+                    <div>
+                        <fieldset class="space-y-3">
+                            <legend class="legend">Links</legend>
+
+                            <template x-for="(link, index) in links" :key="link">
+                                <div class="flex gap-x-2 items-center">
+                                    <input name="links[]" x-model="link" class="input">
+
+                                    <button
+                                        type="button"
+                                        aria-label="Remoove link"
+                                        @click="links.splice(index, 1)"
+                                        class="form-muted-icon"
+                                    >
+                                    <x-icons.close />
+                                </button>
+                                </div>
+                            </template>
+
+                            <div class="flex gap-x-2 items-center">
+                                <input
+                                    x-model="newLink"
+                                    type="url"
+                                    id="new-link"
+                                    data-test="new-link"
+                                    placeholder="http://example.com"
+                                    autocomplete="url"
+                                    class="input flex-1"
+                                    spellcheck="false"
+                                >
+                                <button
+                                    type="button"
+                                    @click="links.push(newLink.trim()); newLink = ''"
+                                    data-test="submit-new-link-button"
+                                    :disabled="newLink.trim().length === 0"
+                                    aria-label="Add new link"
+                                    class="form-muted-icon"
+                                >
+                                    <x-icons.close class="rotate-45" />
+                                </button>
+                            </div>
+
+                            <pre x-text="JSON.stringify(links)"></pre>
+                        </fieldset>
+                    </div>
 
                     <div class="flex justify-end gap-x-5">
                         <button type="button" @click="$dispatch('close-modal')">Cancel</button>
