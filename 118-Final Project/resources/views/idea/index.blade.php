@@ -34,6 +34,11 @@
             <div class="grid md:grid-cols-2 gap-6">
                 @forelse ($ideas as $idea)
                     <x-card class="flex flex-col" href="{{ route('idea.show', $idea) /*$idea->path()*/ }}">
+                        @if($idea->image_path)
+                            <div class="mb-4 -mx-4 -mt-4 rounded-t-lg overflow-hidden">
+                                <img src="{{ asset('storage/' . $idea->image_path) }}" alt="" class="w-full h-48 object-cover">
+                            </div>
+                        @endif
                         <h3 class="text-foreground text-lg">{{ $idea->title }}</h3>
                         <diw class="mt-1">
                             <x-idea.status-label status="{{ $idea->status }}">
@@ -59,10 +64,13 @@
                 x-data="{
                     status: 'pending',
                     newLink: '',
-                    links: []
+                    links: [],
+                    newStep: '',
+                    steps: []
                 }"
                 method="POST"
                 action="{{ route('idea.store') }}"
+                enctype="multipart/form-data"
             >
                 @csrf
                 <div class="space-y-6">
@@ -100,6 +108,55 @@
                         type="textarea"
                         placeholder="Descridbe your idea..."
                     />
+
+                    <div class="space-y-2">
+                        <label for="image" class="label">Feature Image</label>
+
+                        <input type="file" name="image" accept="image/*">
+                        <x-form.error name="image" />
+                    </div>
+
+                    <div>
+                        <fieldset class="space-y-3">
+                            <legend class="legend">ActionableSteps</legend>
+
+                            <template x-for="(step, index) in steps" :key="step">
+                                <div class="flex gap-x-2 items-center">
+                                    <input name="steps[]" x-model="step" class="input">
+
+                                    <button
+                                        type="button"
+                                        aria-label="Remoove step"
+                                        @click="steps.splice(index, 1)"
+                                        class="form-muted-icon"
+                                    >
+                                    <x-icons.close />
+                                </button>
+                                </div>
+                            </template>
+
+                            <div class="flex gap-x-2 items-center">
+                                <input
+                                    x-model="newStep"
+                                    id="new-step"
+                                    data-test="new-step"
+                                    placeholder="What needs to be done"
+                                    class="input flex-1"
+                                    spellcheck="false"
+                                >
+                                <button
+                                    type="button"
+                                    @click="steps.push(newStep.trim()); newStep = ''"
+                                    data-test="submit-new-step-button"
+                                    :disabled="newStep.trim().length === 0"
+                                    aria-label="Add new step"
+                                    class="form-muted-icon"
+                                >
+                                    <x-icons.close class="rotate-45" />
+                                </button>
+                            </div>
+                        </fieldset>
+                    </div>
 
                     <div>
                         <fieldset class="space-y-3">
@@ -142,8 +199,6 @@
                                     <x-icons.close class="rotate-45" />
                                 </button>
                             </div>
-
-                            <pre x-text="JSON.stringify(links)"></pre>
                         </fieldset>
                     </div>
 
