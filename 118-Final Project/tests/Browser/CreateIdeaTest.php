@@ -22,6 +22,6 @@ it('creates a new idea', function () {
         'title' => 'Eine Demo Idee',
         'status' => 'completed',
         'description' => 'Ein Dummy-Description',
-        'links' => ['https://test.de', 'https://test2.de']
+        'links' => ['https://test.de', 'https://test2.de'],
     ]);
 });
