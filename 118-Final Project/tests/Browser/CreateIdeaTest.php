@@ -14,14 +14,20 @@ it('creates a new idea', function () {
         ->click('@submit-new-link-button')
         ->fill('@new-link', 'https://test2.de')
         ->click('@submit-new-link-button')
+        ->fill('@new-step', 'Mach Etwas')
+        ->click('@submit-new-step-button')
+        ->fill('@new-step', 'Mach noch Etwas')
+        ->click('@submit-new-step-button')
         ->click('Create')
         ->assertPathIs('/ideas');
 
     // expect(Idea::count())->tobe(1);
-    expect($user->ideas->first())->toMatchArray([
+    expect($idea = $user->ideas->first())->toMatchArray([
         'title' => 'Eine Demo Idee',
         'status' => 'completed',
         'description' => 'Ein Dummy-Description',
         'links' => ['https://test.de', 'https://test2.de'],
     ]);
+
+    expect($idea->steps)->toHaveCount(2);
 });
