@@ -22,7 +22,7 @@
     <x-card @click.away="show=false" class="shadow-xl max-w-2xl w-full max-h-[80dvh] overflow-auto">
         <div class="flex justify-between items-center">
             <h2 id="madal-{{ $name }}-title" class="text-xl font-bold">{{ $title }}</h2>
-            <button @click="show = false" aria-label="Close modal">
+            <button @click="show = false;" aria-label="Close modal">
                 <x-icons.close />
             </button>
         </div>
